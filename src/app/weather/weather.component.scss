@@ -1,0 +1,13 @@
+.weather {
+  margin: 0 auto;
+  max-width: 500px;
+
+  .spinner {
+    margin: 0 auto;
+  }
+
+  &-params {
+    display: flex;
+    flex-flow: column;
+  }
+}

@@ -1,0 +1,25 @@
+<div class="weather">
+    <form [formGroup]="form" (submit)="getBestPlaces(form.value)" class="weather-params">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Ideal temperature" type="number" formControlName="temp">
+            <span matSuffix>C</span>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Ideal humidity" type="number" formControlName="humidity">
+            <span matSuffix>%</span>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Sex" formControlName="sex">
+              <mat-option *ngFor="let sex of sexs" [value]="sex.value">
+                {{sex.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <button type="submit" color="primary" mat-raised-button>Get places with the best weather</button>
+    </form>
+    <mat-list>
+        <mat-list-item *ngFor="let place of bestPlaces$ | async">{{place.name}}</mat-list-item>
+        <mat-list-item [hidden]="!isEmpty">Unfortunately there are no places with the best conditions for now</mat-list-item>
+    </mat-list>
+    <mat-spinner class="spinner" [hidden]="!inProgress"></mat-spinner>
+</div>
